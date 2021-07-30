@@ -1,0 +1,9 @@
+#first {
+    position: fixed;
+    z-index: 2;
+}
+
+#second {
+    position: fixed;
+    z-index: 1;
+}

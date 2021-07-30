@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Learning HTML - First Website</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  
+	   <style>
+		img {
+			border-radius: 8px;
+			max-width: 100%;
+			height: auto;
+		}
+	  </style>
+   </head>
+	
+	{% extends "base.html" %}
+	{% block content %}
+	
+   <body style="background-color:#95b1de;" alink = "#FF0000" link = "#0000FF" vlink = "#800080">
+   
+	
+		
+	<hr color="#3d5780"/>
+	
+	  
+	  
+	  
+	  <!-- Images -->
+	  <div>
+		<p style="float:left;"> <img src = "{{ url_for('static', filename='suku.jpg') }}" width="583" height="663" border=4/></p>
+		<p style="position:relative; left: 18px; top:25px; font-family:Helvetica; color:#2d405e; line-height:90%;""><font size = "3">Can you find another image that can strike an unparalleled amount of fear that even remotely holds up to this accursed image?</p>
+	  </div>
+	  
+	  <br />
+	  
+	  <div style="clear: left;">
+		<p style="float:left;"> <img src = "{{ url_for('static', filename='nagatoro.jpg') }}" width="640" height="360" border=4/></p>
+		<p style="position:relative; left: 18px; top:25px; font-family:Helvetica; color:#2d405e; line-height:90%;""><font size = "3">It's <b>her.</b></p>
+	  </div>
+	  <!-- end images -->
+	  
+	</body>
+	{% endblock %}
+</html>

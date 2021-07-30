@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Learning HTML - First Website</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <style>
+	  .container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		gap: 10px;
+		}
+	  </style>
+   </head>
+   
+	{% extends "base.html" %}
+	{% block content %}
+   
+   <body style="background-color:#95b1de;" alink = "#FF0000" link = "#0000FF" vlink = "#800080">
+   
+	<div align = "center">
+		
+		<hr color="#3d5780"/>
+		</br>
+		<img src="{{ user.avatar(128) }}" border=4/>
+		</br>
+		<h1> User: {{ user.username }}</h1>
+		
+		<p> {{ user.username }} has completed <b>{{ user.daily_count }}</b> exercise(s) </p>
+		
+		{% if user.daily_count == 0 %}
+		<p><b>Hold a plank for a minute!</b></p>
+		{% endif %}
+		
+		{% if user.daily_count == 1 %}
+		<p><b>Do 20 pushups in a row!</b></p>
+		{% endif %}
+		
+		{% if user.daily_count == 2 %}
+		<p><b>Do 20 lunges!</b></p>
+		{% endif %}
+		
+		{% if user.daily_count == 3 %}
+		<p><b>Do 50 jumping jacks!</b></p>
+		{% endif %}
+		
+		{% if user.daily_count == 4 %}
+		<p><b>Do 50 leg lifts!</b></p>
+		{% endif %}
+		
+		{% if user.daily_count >= 5 %}
+		<p><b>Finished!</b></p>
+		{% endif %}
+		
+		</br>
+		<p> Current daily streak is: <b>{{ streak.total_count }}</b></p>
+		
+		{% if user.daily_count < 5 %}
+		<form action="" method="post">
+			<button name="ExerciseButton" type="submit">Exercise</button>
+		</form>
+		{% else %}
+		
+		<div class="container">
+		<form action="{{ url_for('exercise_top')}}" method="get">
+			<button name="ExerciseTopButton" type="submit">View Best Streaks</button>
+		</form>
+		<form action="{{ url_for('past_streak', username=current_user.username) }}" method="get">
+			<button name="PersonalStreakButton" type="submit">View Your Past Streaks</button>
+		</form>
+		</div>
+		
+		{% endif %}
+		
+		</div>
+		
+	</body>
+	{% endblock %}
+	
+</html>

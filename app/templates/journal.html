@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Learning HTML - First Website</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+	
+	{% extends "base.html" %}
+	{% block content %}
+   <body style="background-color:#95b1de;" alink = "#FF0000" link = "#0000FF" vlink = "#800080">
+		
+	<hr color="#3d5780"/>
+	
+		
+	<!-- Journal Entries -->
+	
+	<!-- Generate entries -->
+	{% for post in post_list|reverse %}
+	<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>{{ post.post_date }}</u></i></p>
+	
+	<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+			{{ post.post|safe }}
+			<p>
+	</div>
+	{% endfor %}
+	<!-- generate end -->
+	
+	<!-- 5 -->
+	<div align="left">
+	<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>July 28th, 2021</u></i></p>
+		
+		<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+			It's been 20 days since the first post on this webpage and you could say I've come a long ways? Not really, honestly but compared to before I've made some progress. It's nearing about a month since I had my epiphany and just buckled down and threw myself into all of this. This website is also slowly developing and expanding from just the single html file that blew my mind when it was able to be rendered in a browser. I also need to figure out a way to automate posts instead of just hardcoding this text into the journal.html file itself. It'd probably make my life a lot easier down the line when I just want to continually update this page. But aside from all of that and since the completion of RemiScraper, I had butted my head against Flask and generally have a gist of what it's all about, and it really isn't all that bad with the routing and Jinja2 and so on. But Flask is supposed to be simplistic, but it takes some time to figure out all of the extensions it has though. The thought of Django down the line is a bit intimidating too, but maybe by understanding Flask my life might be somewhat easier. Anyways, I'll just keep plugging away. I still have a lot more to learn.</br></br>
+			And of course, I'll leave this bit of code here as a keepsake of sorts:
+			
+			<pre style="font-size: .5vw;">
+			
+	@app.route('/streak/<username>')
+	@login_required
+	def past_streak(username):
+		streak_list = []
+		all_streaks = Streak.query.all()
+
+		for streak in all_streaks:
+			if username == streak.old_user:
+
+				if streak.streak_end is not None:
+					streak_list.append(streak)
+
+		return render_template('paststreak.html', streaks=streak_list)
+		
+			</pre>
+			
+			</p>
+		</div>
+	</div>
+	
+	<!-- 4 -->
+	<div align="left">
+	<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>July 23rd, 2021</u></i></p>
+		
+		<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+			Even if I make minimal headway, I should at least take the time to write something in here at the very least. It helps to create checkpoints and markers to show my overall progress. Even if it's just a little bit at a time, it eventually adds up. It's kind of like that with learning all of this stuff too. It's easy to fall into the mindset that I'm not good enough with this mound of imposing information glaring down at me. I guess that's what I've gotten myself into, without even realizing it. Programming really is just a constant bombardment of learning new things and learning to not be uncomfortable or scared of the fact that you can't know everything. Intimidating, definitely. But at the same time, if I learn to develop a mindset of just buckling down and being somewhat excited at the prospect of the unknown, then maybe I could regain that childlike wonder I had back in university. Who knows? </br></br>
+			Anyways, Remi is just hanging out there somewhere as a dyno in the aether 24/7. I probably won't have the opportunity of adding more stuff for free because it'll eat away at the 1000 hours I was alloted a month, but maybe I could make something work. At the very least, I have some vague ideas of what I want to do with this website. Can't really do much in its current state and I don't know if Javascript has the ability to spice this place up. Github pages may be free, but only hosting static webpages is a bit suffocating. </br></br>
+			
+
+			
+			</p>
+		</div>
+	</div>
+	
+	
+	<!-- 3 -->
+	<div align="left">
+	<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>July 19th, 2021</u></i></p>
+		
+		<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+			A week has passed and I've marathoned and reviewed through all the notes of one of the Python courses I took. I suppose compressing all that information I've learned over a 10 week period into several days is impressive enough? It's mainly just review though and dusting off things from the depths of my memory. I did create an Ebay web scraper and my first Discord Bot, going further as to integrate the scraper into the bot. It might not be anything substantial but at least it's a good milestone for me that I could look back on in the future.</br></br>
+			I'll leave this bit of code here as a memento:
+			
+			<pre style="font-size: .5vw;">
+			
+	def produce_ebay_prices(payload: dict) -> namedtuple:
+		"""Asks for parameters for an item on ebay and produces details for it"""
+
+		base_url = "https://www.ebay.com/sch/"
+
+		source = _get_url_source(base_url, payload)
+		item_list = _get_source_details(source)
+
+		return item_list
+		
+			</pre>
+			
+			</p>
+		</div>
+	</div>
+	
+	<!-- 2 -->
+	<div align="left">
+		<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>July 11th, 2021</u></i></p>
+		
+		<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+			It's been a couple of days but finding motivation while nearly suffocating from the summer heat is challenging, but at the very least I feel like I am able to regain most of the knowledge I thought I had lost. Programming is like riding a bike, you never forget it (hopefully).
+			Anyways, here we go again. The task I'm giving to myself is FizzBuzz, if I can't do this, then I don't even.
+			<pre style="font-size: .5vw;">
+		
+	def FizzBuzz():
+		'''Print out 1 to 100 but every multiple of 3 print Fizz, and every multiple of 5 print Buzz'''
+				
+		for num in range(101):
+			if(num%3 == 0 and num%5 == 0):
+				print("FizzBuzz")
+						
+			elif(num%3 == 0):
+				print("Fizz")
+					
+			elif(num%5 == 0):
+				print("Buzz")
+						
+			else:
+				print(num)
+			
+			</pre>
+			
+			Well at the very least I can acknowledge that there is still some semblance of muscle memory within me. It's a weird feeling of going back to something familiar and all of a sudden your fingers just type out a function or certain syntax that haven't been dusted off in awhile. At the very least, being able to still code like this is somewhat reassuring. </br></br>
+			Now it's time to dabble with lists just to further familiarize myself with all the basics: </br></br>
+			
+			<b>Unordered Lists:</b>
+			<ul type = "circle">
+				<li>Thing 1</li>
+				<li>Thing 2</li>
+				<li>Thing 3</li>
+				<li>Thing 4</li>
+				<li>Thing 5</li>
+				
+			</ul>
+			
+			<b>Ordered Lists:</b>
+			<ol type = "1">
+				<li>Stop</li>
+				<li>Drop</li>
+				<li>and Roll</li>
+			</ol>
+			
+			<b>Definition Lists:</b>
+			<dl>
+				<dt><u>Rectangle</u></dt>
+				<dd>An elongated square.</dd>
+				
+				<dt><u>Square</u></dt>
+				<dd>A compressed rectangle.</dd>
+			
+			</dl>
+			
+			</br>
+			
+			I'll have to run through the tutorial again and see if I haven't practiced anything that might seem relevant or important. But there is a lot to this tutorial that seems incredibly dated, probably won't be applicable in the year 2021 at the very least. Honestly, most of these HTML basics are for like super dated mid-2000s homepages with tacky decorations assaulting your vision.
+			
+			</br></br>
+			
+			</p>
+		</div>
+		
+	</div>
+	
+	<!-- 2 end-->
+	
+	<!-- 1 -->
+	<div align="left">
+		<p style = "font-family:Helvetica; color:#3d5780; font-weight:bold;"><font size = "5">&nbsp;<u><i>July 8th, 2021</u></i></p>
+		
+		<div style="font-family:Helvetica; color:#2d405e; line-height:90%;">
+			<p style="margin: -15px 0px 0px 5px;"><font size = "3">
+		    Learning HTML is a trial by fire, so I should try and take things one step at a time. <br/>
+			
+			<pre style="font-size: .5vw;">
+			
+	void DoingThingsTheHardWay(random_object thing1, random_object thing2){
+		random_object temp;
+		random_object* thing1_adr;
+		random_object* thing2_adr;
+				
+		thing1_adr = &thing1;
+		thing2_adr = &thing2;
+				
+		temp = *thing1_adr;
+		*thing1_adr = *thing2_adr;
+		*thing2_adr = temp;
+				
+		return 0;
+	}
+			</pre>
+			
+			Practicing my rusty programming skills, hopefully I haven't completely forgotten everything. At the very least, I feel as if it has been ingrained into my memory just like learning a bike, despite me never having actually learned how to bike. But this is also to test the preserve programming tag, which gives me some freedom like the ASCII art in the homepage. <br /><br />
+			And to test both align and title at the same time, it would be something like this: <br />
+			
+			<p align = "left" title = "Completely">This</p>
+			<p align = "center" title = "pointless">seems</p>
+			<p align = "right" title = "though.">correct.</p> 
+			
+			<br /><br />
+			<p>And for the following sentence, it should be a pain to read:</p>
+			<p><code>Do</code> <b>your</b> <i>eyes</i> <u>hurt</u> <mark>by</mark> <strike>just</strike> <tt>looking</tt> <sup>at</sup> <sub>something</sub> <big>like</big> <small>this?</small></p>
+			<p> Just doing it once is good enough to keep note of it and shove it away somewhere within the many bytes inside my brain. Just writing code is better than nothing. </p><br />
+		</div>
+	
+	</div>
+	<!-- 1 end -->
+	
+	
+	
+	<!-- end journal -->
+		
+   </body>
+   
+   <!-- Write posts -->
+   {% if username == "jengo" %}
+		<form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.post_date.label }}</br>
+			{{ form.post_date(size=32) }}</br>
+			{% for error in form.post_date.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.post.label }}</br>
+			{{ form.post(cols=100, rows=20) }}</br>
+			{% for error in form.post.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p> {{ form.submit() }} {{ form.delete() }}</p>
+		</form>
+	{% endif %}
+   <!-- write end -->
+   
+	{% endblock %}
+</html>

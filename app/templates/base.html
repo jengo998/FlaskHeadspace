@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	</head>
+	
+	<body>
+	<!-- login -->
+	<div style = "font-weight:bold; float:right; position:relative; left: -10px; top:10px;">
+		{% if current_user.is_anonymous %}
+		<a href = "{{ url_for('login') }}"><font size = "4">Login</a>
+		{% else %}
+		<a href = "{{ url_for('logout') }}"><font size = "4">Logout</a>
+		{% endif %}
+	</div>
+	<!-- end login-->
+		
+	<div align = "center" style = "clear:right;">
+		<!-- Title of the overall page -->
+		<p title = "???" style = "font-family:Helvetica; color:#3ca5ca;"> <font size = "7"> <b>Headspace</b></font> </p>
+		<!-- end title-->
+		
+	
+		<!-- General Music -->
+		<audio controls autoplay loop id="page_music">
+			<source src= "{{ url_for('static', filename='Time.mp3') }}" type="audio/mpeg">
+		</audio>
+		
+		<script>
+			var music = document.getElementById("page_music");
+			music.volume = 0.2;
+		</script>
+		<!-- end music -->
+		
+		<p></p>
+		
+		<!-- Directories -->
+		<div id = "directory" style = "font-weight:bold;">
+			<a href = "{{ url_for('home') }}">Home</a> | 
+			<a href = "{{ url_for('journal') }}">Journal</a> | 
+			<a href = "{{ url_for('gallery') }}">Gallery</a> | 
+			<a href = "{{ url_for('music') }}">Music</a> |
+			<a href = "{{ url_for('sandbox') }}">Sandbox</a> |
+			{% if not current_user.is_anonymous %}
+			<a href = "{{ url_for('routine', username=current_user.username) }}">Routine</a> |
+			{% else %}
+			<a href = "{{ url_for('routine_entry') }}">Routine</a> |
+			{% endif %}
+			<a href = "{{ url_for('games') }}">Games</a>
+		
+		</div>
+		<!-- end directories -->
+	</div>
+	
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<hr color="#3d5780"/>
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+	
+	{% block content %}{% endblock %}
+	</body>
+</html>
