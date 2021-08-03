@@ -1,16 +1,25 @@
 from datetime import datetime, timedelta
 import unittest
-from app import app, db, plots
+from app import create_app, db
+from app.exercise import plots
 from app.models import User, Streak, PostDB
+from config import Config
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+        self.app = create_app(TestConfig)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
         db.create_all()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
     def test_streak_plotting(self):
         u1 = User(username="joe")
@@ -38,6 +47,7 @@ class UserModelCase(unittest.TestCase):
         u = User(username='roger')
         self.assertEqual(u.avatar(128),
                          'https://www.gravatar.com/avatar/b911af807c2df88d671bd7004c54c1c2?d=retro&s=128')
+
 
 
 if __name__ == '__main__':
