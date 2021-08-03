@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Learning HTML - First Website</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   
+	{% extends "base.html" %}
+	{% block content %}
+   
+   <body style="background-color:#95b1de;" alink = "#FF0000" link = "#0000FF" vlink = "#800080">
+   <hr color="#3d5780"/>
+   
+	<div align = "left" style="position:relative; left:10px;">
+	
+	
+		<h1 style = "font-family:Helvetica; color:#3d5780;"><u>Change Username</u></h1>
+	
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+			
+			<p>
+				{{ form.new_username.label }}</br>
+				{{ form.new_username(size=32) }}</br>
+				{% for error in form.new_username.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</p>
+			
+			<p style="position:relative; top: -10px;">{{ form.submit() }}</p>
+		</form>
+		</div> 
+	</body>
+	{% endblock %}
+	
+</html>
